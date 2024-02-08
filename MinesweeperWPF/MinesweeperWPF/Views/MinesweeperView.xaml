@@ -1,0 +1,62 @@
+﻿<Window x:Class="MinesweeperWPF.Views.MinesweeperView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinesweeperWPF"
+        xmlns:vm="clr-namespace:MinesweeperWPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Minesweeper" Height="650" Width="700"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:MinesweeperViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,26,10,10">
+            <TextBlock Text="Difficulty:" />
+            <ComboBox SelectedIndex="{Binding SelectedDifficulty}"
+                   Grid.Column="0" Grid.Row="0" Height="40">
+                <ComboBoxItem Content="Easy" Tag="0"/>
+                <ComboBoxItem Content="Medium" Tag="1"/>
+                <ComboBoxItem Content="Hard" Tag="2"/>
+            </ComboBox>
+        </StackPanel>
+        <Button Grid.Column="1" Content="Reset Game" Command="{Binding ResetGameCommand}" Height="40" Margin="0,10,0,10"/>
+        <ItemsControl ItemsSource="{Binding FlattenedCells}" Grid.Column="1" Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="{Binding BoardRows}" Columns="{Binding BoardColumns}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Command="{Binding DataContext.CellClickCommand, 
+                                 RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                CommandParameter="{Binding Position}">
+                        <Button.InputBindings>
+                            <MouseBinding MouseAction="RightClick" 
+                              Command="{Binding DataContext.FlagCellCommand, 
+                                       RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                              CommandParameter="{Binding Position}"/>
+                        </Button.InputBindings>
+                        <Image Source="{Binding ImageSource}"/>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+            <TextBlock Text="Remaining Flags: " VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Text="{Binding RemainingFlags}" VerticalAlignment="Center" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

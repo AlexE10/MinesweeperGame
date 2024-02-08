@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Images\0.png" />
+    <None Remove="Views\Images\1.png" />
+    <None Remove="Views\Images\2.png" />
+    <None Remove="Views\Images\3.png" />
+    <None Remove="Views\Images\4.png" />
+    <None Remove="Views\Images\5.png" />
+    <None Remove="Views\Images\6.png" />
+    <None Remove="Views\Images\7.png" />
+    <None Remove="Views\Images\8.png" />
+    <None Remove="Views\Images\flag.png" />
+    <None Remove="Views\Images\mine.png" />
+    <None Remove="Views\Images\none.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Images\1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PrologMap\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Images\0.png" />
+    <Resource Include="Views\Images\2.png" />
+    <Resource Include="Views\Images\3.png" />
+    <Resource Include="Views\Images\4.png" />
+    <Resource Include="Views\Images\5.png" />
+    <Resource Include="Views\Images\6.png" />
+    <Resource Include="Views\Images\7.png" />
+    <Resource Include="Views\Images\8.png" />
+    <Resource Include="Views\Images\flag.png" />
+    <Resource Include="Views\Images\mine.png" />
+    <Resource Include="Views\Images\none.png" />
+  </ItemGroup>
+
+</Project>
